@@ -38,7 +38,40 @@ resource "azurerm_network_security_group" "nsg_app" {
         destination_address_prefix = "10.0.1.100"
         destination_port_range     = "3389"
         source_address_prefix      = "*"
-    }       
+    }
+    security_rule {
+        name                       = "app-winrm"
+        priority                   = 250
+        direction                  = "Inbound"
+        access                     = "Allow"
+        protocol                   = "Tcp"
+        source_port_range          = "*"
+        destination_address_prefix = "10.0.1.100"
+        destination_port_range     = "5985"
+        source_address_prefix      = "*"
+    }
+    security_rule {
+        name                       = "app-winrm-https"
+        priority                   = 251
+        direction                  = "Inbound"
+        access                     = "Allow"
+        protocol                   = "Tcp"
+        source_port_range          = "*"
+        destination_address_prefix = "10.0.1.100"
+        destination_port_range     = "5986"
+        source_address_prefix      = "*"
+    }
+    security_rule {
+        name                       = "app-webdeploy"
+        priority                   = 1010
+        direction                  = "Inbound"
+        access                     = "Allow"
+        protocol                   = "Tcp"
+        source_port_range          = "*"
+        destination_address_prefix = "10.0.1.100"
+        destination_port_range     = "8172"
+        source_address_prefix      = "*"
+    }  
 
     tags = var.nsg_tags
 }
