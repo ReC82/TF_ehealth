@@ -24,6 +24,7 @@ resource "null_resource" "example_provisioner" {
   }
 }
 
+/*
 resource "null_resource" "iis_provisioner" {
   connection {
     host     = module.main_app_vnet.public_ip_address[0]
@@ -36,12 +37,13 @@ resource "null_resource" "iis_provisioner" {
     source      = "./Scripts/Web/setup.ps1"
     destination = "C:/inetpub/wwwroot/"
     # C:\inetpub\wwwroot
-    /*
+    
     winrm quickconfig
     winrm set winrm/config/service/Auth '@{Basic="true"}'
     winrm set winrm/config/service '@{AllowUnencrypted="true"}'
     winrm set winrm/config/winrs '@{MaxMemoryPerShellMB="1024"}'
-    */
+    
   }
 }
+*/
 
